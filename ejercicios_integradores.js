@@ -56,19 +56,20 @@ diasSem.forEach( (item, index) => {
     }
 }); */
 
+/* 
 // INTEGRADOR FÁCIL:
 // Se tendrá que aplicar todo lo aprendido con los // ejercicios anteriores:
-// Deberá poder ingresar un día de la semana
-// Deberá poder compararlo con todos los días de la semana
-// Deberá evaluar si es un día de semana y fin de semana // mediante un mensaje similar a: "El día es hábil" sino // "El día es fin de semana";
-// En caso de encontrar el día utilizar la sentencia break // y terminar el for.
 const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+// Deberá poder ingresar un día de la semana
 const diaElejido = prompt('Ingrese un día de la semana', 'dia de semana');
 console.log(diasSemana[3]===diaElejido);
+// Deberá poder compararlo con todos los días de la semana
 for(i=0; i<diasSemana.length; i++) {
+    // Deberá evaluar si es un día de semana y fin de semana // mediante un mensaje similar a: "El día es hábil" sino // "El día es fin de semana";
     if(diaElejido === diasSemana[i] && i<5){
         console.log(diasSemana[i]);
         alert('El día es hábil.');
+        // En caso de encontrar el día utilizar la sentencia break // y terminar el for.
         break
     } else if(diaElejido === diasSemana[i] && i>=5) {
         console.log(diasSemana[i]);
@@ -77,5 +78,28 @@ for(i=0; i<diasSemana.length; i++) {
     } else {
         console.log(diasSemana[i]);
     }
-
 }
+ */
+
+// PEQUEÑAS FUNCIONES:
+// Crear una función que pida nombre y apellido y lo muestre en la consola.
+/* const getName = ()=> {
+    const name = prompt('What´s your first and last name?','username userlastaname');
+    console.log(name)
+}
+getName(); */
+// Crear una función que en base a un parámetro muestre los días hábiles o de fines de semana en consola.
+const verifDiaSemana = (e) => {
+    e = prompt('Ingrese un dia de la semana:', 'dia');
+    const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+    diasSemana.forEach((item, index) => {
+        item = new RegExp(item,'i');
+        if(e.match(item) && index<5) {
+            return console.log(diasSemana.slice(0,5));
+        }
+        else if(e.match(item) && index>=5) {
+            return console.log(diasSemana.slice(5,7));
+        }
+    } )
+}
+window.addEventListener('click',verifDiaSemana);
