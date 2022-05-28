@@ -88,18 +88,62 @@ for(i=0; i<diasSemana.length; i++) {
     console.log(name)
 }
 getName(); */
+
+
 // Crear una función que en base a un parámetro muestre los días hábiles o de fines de semana en consola.
-const verifDiaSemana = (e) => {
+/* const verifDiaSemana = (e) => {
     e = prompt('Ingrese un dia de la semana:', 'dia');
     const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+    if(e.match(/s[aá]bado/i)){
+        e='sabado'
+    }
     diasSemana.forEach((item, index) => {
         item = new RegExp(item,'i');
         if(e.match(item) && index<5) {
-            return console.log(diasSemana.slice(0,5));
-        }
-        else if(e.match(item) && index>=5) {
-            return console.log(diasSemana.slice(5,7));
+            console.log(diasSemana.slice(0,5));
+        } else if(e.match(item) && index>=5) {
+            console.log(diasSemana.slice(5,7));
         }
     } )
 }
-window.addEventListener('click',verifDiaSemana);
+window.addEventListener('click',verifDiaSemana); 
+ */
+
+// O también por Array.find(), teoricamente es más eficiente en este caso, porque al encontrar el primer valor truthy que resulta la función callback, retorna y sigue el recorrido:
+/* const verifDiaSemana = () => {
+    let e = prompt('Ingrese un dia de la semana:', 'dia');
+    const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+    if(e.match(/s[aá]bado/i)) {
+        e = 'sabado';
+    }
+    let checkday = diasSemana.find((item,index) => {
+        item = new RegExp(item,'i');
+        if(e.match(item)&&index<5){
+            console.log(diasSemana.slice(0,5));
+        } else if(e.match(item)&&index>=5){
+            console.log(diasSemana.slice(5,7));
+        }
+    } )
+}
+window.addEventListener('click',verifDiaSemana); */ 
+
+// CREAR UN ARRAY DE PELÍCULAS:
+let pelis = [];
+// Crear una función que agregue una película al array de // películas
+// La película deberá tener un ID y un Título
+const agregarPeli = () => {
+    let id = prompt('ingrese un id de pelicula','');
+    let titulo = prompt('ingrese un titulo de pelicula','');
+    
+    // Crear una función que evalúe antes de agregar que la película no fue ingresada previamente
+    if(pelis.find(item => item[0] === id || item[1] === titulo) === undefined) {
+        pelis[pelis.length] = [id, titulo];
+        return pelis;
+    } else {
+        return alert('ID o Pelicula ya registrada!')
+    }
+}
+window.addEventListener('click',agregarPeli);
+
+// Crear una función que ordene las películas por Título y por // ID
+// Crear una función que elimine una película por su ID.
