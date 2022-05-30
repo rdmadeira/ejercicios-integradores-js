@@ -284,5 +284,32 @@ tropaDeElite.ID = '5555';
 delete tropaDeElite.ID;
 console.log(tropaDeElite.ID);
 
+// CREAR UNA FUNCIÓN PARA CARGAR AUTOS EN UN CAMIÓN:
+
+function cargarAuto(pesoMax) {
+    let camion = {};
+    function Car(patente, peso){
+        this.patente = patente;
+        this.peso = Number(peso);
+    }
+    for(peso in camion){
+        if(peso < pesoMax){
+            camion.car1 = new Car('imm056', '980');
+            console.log(camion)
+        }
+    }
+    camion.car1 = new Car('imm056', '980');
+    camion.car1 = new Car('imm056', '980');
+    camion.car1 = new Car('imm056', '980');
+    camion.car1 = new Car('imm056', '980');
+    camion.car1 = new Car('imm056', '980');
+    camion.car1 = new Car('imm056', '980');
+    camion.car1 = new Car('imm056', '980');
+}
+camion.car1 = new Car('imm056', '980');
+// El auto tendrá que tener al menos patente y peso
+// El camión tiene un peso máximo de carga
+// El objeto camión deberá validar con cada auto ingresado si está por debajo del peso o si ya no lo puede agregar
+// Además de almacenar los autos debe tener la posibilidad de validar que no tenga patentes repetidas y que me devuelva todas las patentes que tiene a bordo.
 
 
