@@ -93,7 +93,11 @@ const verifDiaSemana = (e) => {
     e = prompt('Ingrese un dia de la semana:', 'dia');
     const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
     diasSemana.forEach((item, index) => {
-        item = new RegExp(item,'i');
+        if (item==='sabado') {
+            item === new RegExp(/s[ãàáâäåAÃÀÁÂÄÅ]bado/, 'i')
+        } else {
+            item = new RegExp(item,'i');
+        }
         if(e.match(item) && index<5) {
             return console.log(diasSemana.slice(0,5));
         }
