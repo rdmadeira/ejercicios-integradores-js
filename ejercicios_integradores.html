@@ -4,11 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>Ejercicios JavaScript Nucba</title>
 </head>
 <body>
     <h1>Ejercicios de JavaScript Nucba - 1</h1>
-
+    <div>
+        <label for="agregar-peli">Click on  button for add a film: </label><button name="agregar-peli">addIdPelis</button>
+    </div>
+    <div>
+        <label for="delPeli">Write the film     id that you want to delete: </  label><input type="text"/     name="delPeli">
+        <button>delIdPelis</button>
+    </div>
+    <form id="calc">
+        <label for="num1">Numero1:</label> <input type="number" step="any" name="num1" id="num1"/><br>
+        <label for="num2">Numero2:</label><input type="number" step="any" name="num2" id="num2"/><br>
+        <label for="operacion">Suma:</label> <input type="radio" class="inp-radio" name="operacion" id="suma" value="s" checked/>
+        <label for="operacion">Resta:</label> <input type="radio" class="inp-radio" name="operacion" id="resta" value="r"/>
+        <label for="operacion">Multiplicación:</label> <input type="radio" class="inp-radio" name="operacion" id="multiplicacion" value="m"/>
+        <label for="operacion">División:</label> <input type="radio" class="inp-radio" name="operacion" id="division" value="d"/>
+        <button type="submit" id="calc__submit">Calcular!</button>
+    </form>
+    <div>
+        <label for="btn-encender">Encender Motor:  </label><input type="button" value="Encender Motor" id="encenderMotor"/>
+        <label for="btn-frenar">Frenar:  </label><input type="button" value="Frenar Motor" id="frenarMotor"/>
+    </div>
 </body>
 <script src="./ejercicios_integradores.js"></script>
 </html>

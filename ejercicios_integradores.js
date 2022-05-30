@@ -136,14 +136,149 @@ const agregarPeli = () => {
     let titulo = prompt('ingrese un titulo de pelicula','');
     
     // Crear una función que evalúe antes de agregar que la película no fue ingresada previamente
-    if(pelis.find(item => item[0] === id || item[1] === titulo) === undefined) {
-        pelis[pelis.length] = [id, titulo];
-        return pelis;
+    if(pelis.find(item => item['id'] === id || item['titulo'] === titulo) === undefined) {
+        pelis.push({'id': id, 'titulo': titulo});
+        pelisOrdenTitulo();
+        //pelisOrdenId()
+        alert(`Peliculas disponibles - ${pelis.map(i => i.titulo).join(', ')}.`)
+        return pelis
     } else {
         return alert('ID o Pelicula ya registrada!')
     }
 }
-window.addEventListener('click',agregarPeli);
+document.getElementsByTagName('button')[0].addEventListener('click',agregarPeli);
 
-// Crear una función que ordene las películas por Título y por // ID
+// Crear una función que ordene las películas por Título y por ID
+let pelisOrdenTitulo = () => {
+    /* Podes usar 
+    if(a.titulo>b.titulo) {
+        return 1;
+    };
+    if(a.titulo<b.titulo) {
+        return -1;
+    }
+    if(a.titulo===b.titulo) {
+        return 0;
+    } o abajo*/
+    pelis.sort((a,b) => a.titulo.localeCompare(b.titulo, 'en-US','es-AR', {ignorePontuación:true}))
+    console.log(pelis)
+};
+let pelisOrdenId = () => {
+    /* Podes usar 
+    pelis.sort((a,b) => {
+        a=Number(a); b=Number(b)
+        return a.id - b.id;
+    }) o abajo: */
+    pelis.sort((a,b) => a.id.localeCompare(b.id,'es-AR',{numeric: true}))
+    console.log(pelis)
+}
+
 // Crear una función que elimine una película por su ID.
+function delIDPelis () {
+    let i = document.getElementsByName('delPeli')[0].value;
+    if(i === 'null') { i = null;console.log(i)}
+    pelis = pelis.filter((item)=> i !== item.id);
+    alert(`Peliculas disponibles - ${pelis.map(i => i.titulo).join(', ')}.`);
+    console.log(pelis)
+    return pelis
+}
+document.getElementsByTagName('button')[1].addEventListener('click',delIDPelis);
+
+
+// MEJORAR LA CALCULADORA SEPARANDO EN FUNCIONES CADA OPERACIÓN:
+// Deberá poder ingresar 2 valores
+// Deberá poder ingresar que operación quiere realizar
+// Cada operación tendrá que ser una función con los 2 parámetros para // sumar, restar, multiplicar o dividir;
+// Deberá mostrar el resultado de la operación en consola.
+function submitDatos() {
+    let num1 = document.getElementById('num1').value;
+    let num2 = document.getElementById('num2').value;
+    let op = document.querySelector('input[name="operacion"]:checked').value;
+    let result = () => {
+    if(op === 's') {
+        result = Number(num1) + Number(num2);
+        alert(`El resultado de la suma es: ${result}.`)
+        return result;
+    }
+    if(op === 'r') {
+        result = Number(num1) - Number(num2);
+        alert(`El resultado de la resta es: ${result}.`)
+        return result;
+    }
+    if(op === 'm') {
+        result = Number(num1) * Number(num2);
+        alert(`El resultado de la multiplicación es: ${result}.`)
+        return result;
+    }
+    if(op === 'd') {
+        result = Number(num1) / Number(num2);
+        alert(`El resultado de la división es: ${result}.`)
+        return result;
+    }}
+    console.log(result());
+}
+document.getElementsByTagName('form')[0].addEventListener('submit',submitDatos);
+
+// HACER UN OBJETO QUE REPRESENTE UN AUTO:
+// Deberá tener las propiedades color, modelo, patente, marca, prendido, velocidad y velocidad máxima
+function Auto(color, modelo, patente, marca, prendido, velocidad, maxvel) {
+    this.color = color;
+    this.model = modelo;
+    this.patente = patente;
+    this.marca = marca;
+    this.prendido = prendido;
+    this.velocidad = 0;
+    this.maxvel = maxvel;
+    this.encender = ()=> {return this.acelerar();}
+    this.acelerar = ()=> {
+        for(av=0; av<=this.maxvel; av+=10){
+            this.velocidad = av;
+            this.mostrarVeloc();
+        }
+        return this.maxvel;
+    }
+    this.mostrarVeloc = ()=> {alert(this.velocidad)};
+    this.frenar = ()=> {
+        for(av=this.velocidad;av>0;av-=10){
+            this.velocidad = av;
+            this.mostrarVeloc();
+        }
+        this.apagar();
+    };
+    this.apagar = ()=> {alert('Se ha apagado!')};
+}
+
+
+const fiesta = new Auto('beige','fiesta','IMM056', 'Ford','Injeccion Electronica', undefined, 180);
+// Deberá tener los métodos encender, acelerar, mostrar velocidad actual, frenar y apagar
+document.getElementById('encenderMotor').addEventListener('click',fiesta.encender);
+document.getElementById('frenarMotor').addEventListener('click',fiesta.frenar);
+// Por lo tanto mediante el método acelerar tendrá que ir aumentando la velocidad hasta llegar a la velocidad máxima.
+
+// CREAR UNA FUNCIÓN QUE AGREGUE OBJETOS, PELÍCULAS:
+function Films(id, titulo, descripción, año, duración, actores, director) {
+    this.ID = id;
+    this.titulo = titulo;
+    this.descripción = descripción;
+    this.año = año;
+    this.duración = duración;
+    this.actores = [];
+    this.director = director;
+    this.agregarAtor = (e)=> {this.actores.push(e)}
+}
+// El objeto película Deberá tener ID, titulo, descripción, año, duración, actores, director
+const tropaDeElite = new Films(001,'Tropa de Elite', 'Nascimento (Wagner Moura), capitán del BOPE, la Tropa de Elite de Río de Janeiro, es asignado para comandar uno de los equipos que tienen como misión apaciguar la favela ubicada en el Morro do Turano con motivo de la visita del papa Juan Pablo II de aquel año. El capitán se enfrentará con sus miedos internos a la hora de cumplir con las órdenes de sus superiores al mismo tiempo que tratará de cumplir con su deseo y el de su mujer, Rosane (Maria Ribeiro) de salir de la línea del frente del Batallón y encontrar al sustituto ideal.', '2007', '1h55min', {}, 'José Padilha');
+// Deberá tener métodos para editar todas sus propiedades, menos su ID, y para los actores tendrá que ir agregando uno a uno.
+tropaDeElite.agregarAtor('Wagner Moura') //= ['Wagner Moura', 'Maria Ribeiro', 'André Ramiro', 'Caio Junqueira', 'Milhem Cortaz', 'Fernanda Machado', 'Fábio Lago'];
+console.log(tropaDeElite.actores);
+Object.defineProperty(tropaDeElite,'ID', {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+});
+tropaDeElite.ID = '5555';
+delete tropaDeElite.ID;
+console.log(tropaDeElite.ID);
+
+
+
