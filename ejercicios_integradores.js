@@ -258,7 +258,7 @@ const fiesta = new Auto('beige','fiesta','IMM056', 'Ford','Injeccion Electronica
 document.getElementById('encenderMotor').addEventListener('click',fiesta.encender);
 document.getElementById('frenarMotor').addEventListener('click',fiesta.frenar);
 // Por lo tanto mediante el método acelerar tendrá que ir aumentando la velocidad hasta llegar a la velocidad máxima.
-
+/* 
 // CREAR UNA FUNCIÓN QUE AGREGUE OBJETOS, PELÍCULAS:
 function Films(id, titulo, descripción, año, duración, actores, director) {
     this.ID = id;
@@ -282,8 +282,11 @@ Object.defineProperty(tropaDeElite,'ID', {
 });
 tropaDeElite.ID = '5555';
 delete tropaDeElite.ID;
-console.log(tropaDeElite.ID);
+console.log(tropaDeElite.ID); */
 
+let x = ['dcx721']
+let y = ['dcx721']
+console.log(x.find(item => item.toString() === y.toString()) !== undefined)
 // CREAR UNA FUNCIÓN PARA CARGAR AUTOS EN UN CAMIÓN:
 
 // El camión tiene un peso máximo de carga
@@ -299,22 +302,29 @@ function cargarAuto(pesoMax) {
     console.log(carsArr);
 
 // El objeto camión deberá validar con cada auto ingresado si está por debajo del peso o si ya no lo puede agregar
-    for(n = 0; camion.peso <= camion.pesoMax; n++){
+    for(n = 0; n <= carsArr.length - 1; n++){
         camion.peso += carsArr[n].peso;
-        if(camion.peso <= camion.pesoMax && Object.values(camion.cars).find(carsArr[n].patente) === undefined ) {
-            camion.cars.push(carsArr[n]); 
-        }
-        if(camion.peso > pesoMax){
-            camion.peso -= carsArr[n].peso;
-            camion.cars.pop();
-        }
-        console.log(camion);
-        
-    }
-    console.log(camion)
-}
-cargarAuto(8500);
-
 // Además de almacenar los autos debe tener la posibilidad de validar que no tenga patentes repetidas y que me devuelva todas las patentes que tiene a bordo.
+        if(camion.peso <= camion.pesoMax && camion.cars.find( item => item.patente.toString() === carsArr[n].patente.toString()) === undefined ) {
+            camion.cars.push(carsArr[n]);
+        }
+        else if(camion.peso > camion.pesoMax) {
+           camion.peso -= carsArr[n].peso;
+           alert(`Car patente ${carsArr[n].patente} no entra por ultrapasar el peso maximo de ${pesoMax}kg del camion.`)
+        } else {
+           camion.peso -= carsArr[n].peso;
+           alert(`Car patente ${carsArr[n].patente} no entra por ya haber ingresado esta patente`)
+        }
+        console.log(camion.cars);
+    }
+    let patentesArr = [];
+    for(i=0; i <= camion.cars.length - 1; i++){
+        patentesArr[i] = camion.cars[i].patente;
+    }
+    console.log('Los autos cargados son de las patentes ' + patentesArr.join(', ') + '.' )
+    return patentesArr.join(', ')
+    
+}
+cargarAuto(6500);
 
 
