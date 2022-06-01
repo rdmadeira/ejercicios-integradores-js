@@ -284,9 +284,7 @@ tropaDeElite.ID = '5555';
 delete tropaDeElite.ID;
 console.log(tropaDeElite.ID); */
 
-let x = ['dcx721']
-let y = ['dcx721']
-console.log(x.find(item => item.toString() === y.toString()) !== undefined)
+
 // CREAR UNA FUNCIÓN PARA CARGAR AUTOS EN UN CAMIÓN:
 
 // El camión tiene un peso máximo de carga
@@ -297,7 +295,6 @@ function cargarAuto(pesoMax) {
         this.patente = patente;
         this.peso = Number(peso);
     }
-    // let camionArr = Object.values(camion);
     let carsArr = [new Car('imm056', 980), new Car('icv013', 760), new Car('ich142',1080), new Car('dcx721', 890), new Car('dcx721', 890), new Car('fgh213', 1200), new Car('dcx755', 980), new Car('ctx257', 880), new Car('rtf810',1020), new Car('drw258', 1690), new Car('trf541', 690)]
     console.log(carsArr);
 
@@ -316,15 +313,17 @@ function cargarAuto(pesoMax) {
            alert(`Car patente ${carsArr[n].patente} no entra por ya haber ingresado esta patente`)
         }
         console.log(camion.cars);
+        console.log(camion)
     }
     let patentesArr = [];
     for(i=0; i <= camion.cars.length - 1; i++){
         patentesArr[i] = camion.cars[i].patente;
     }
-    console.log('Los autos cargados son de las patentes ' + patentesArr.join(', ') + '.' )
-    return patentesArr.join(', ')
+    console.log('Los autos cargados son de las patentes ' + patentesArr.join(', ') + '.' );
+    console.log(`Peso cargado: ${camion.peso} Kg.`);
+    return patentesArr.join(', ');
     
 }
-cargarAuto(6500);
+cargarAuto(8500);
 
 
