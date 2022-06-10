@@ -194,32 +194,32 @@ document.getElementsByTagName('button')[1].addEventListener('click',delIDPelis);
 // Deberá poder ingresar que operación quiere realizar
 // Cada operación tendrá que ser una función con los 2 parámetros para // sumar, restar, multiplicar o dividir;
 // Deberá mostrar el resultado de la operación en consola.
-function submitDatos() {
+function submitDatos(e) {
+    e.preventDefault();
     let num1 = document.getElementById('num1').value;
     let num2 = document.getElementById('num2').value;
     let op = document.querySelector('input[name="operacion"]:checked').value;
-    let result = () => {
+    let result;
+    
     if(op === 's') {
         result = Number(num1) + Number(num2);
-        alert(`El resultado de la suma es: ${result}.`)
-        return result;
+        // alert(`El resultado de la suma es: ${result}.`)
     }
     if(op === 'r') {
         result = Number(num1) - Number(num2);
-        alert(`El resultado de la resta es: ${result}.`)
-        return result;
+        // alert(`El resultado de la resta es: ${result}.`)
     }
     if(op === 'm') {
         result = Number(num1) * Number(num2);
-        alert(`El resultado de la multiplicación es: ${result}.`)
-        return result;
+        // alert(`El resultado de la multiplicación es: ${result}.`)
     }
     if(op === 'd') {
         result = Number(num1) / Number(num2);
-        alert(`El resultado de la división es: ${result}.`)
-        return result;
-    }}
-    console.log(result());
+        // alert(`El resultado de la división es: ${result}.`)
+    }
+    console.log(result);
+    document.getElementById('result').innerHTML = ' ' + result;
+    return false;
 }
 document.getElementsByTagName('form')[0].addEventListener('submit',submitDatos);
 
@@ -286,7 +286,7 @@ console.log(tropaDeElite.ID); */
 
 
 // CREAR UNA FUNCIÓN PARA CARGAR AUTOS EN UN CAMIÓN:
-
+/* 
 // El camión tiene un peso máximo de carga
 function cargarAuto(pesoMax) {
     let camion = {'pesoMax': pesoMax, 'peso': 0, cars: []};
@@ -325,5 +325,5 @@ function cargarAuto(pesoMax) {
     
 }
 cargarAuto(8500);
-
+ */
 
